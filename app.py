@@ -2,10 +2,9 @@ import streamlit as st
 import yfinance as yf
 import pandas as pd
 import joblib
-import numpy as np
 
 # Load trained model
-model = joblib.load('model.pkl')
+model = joblib.load('StockPredictor/model.pkl')
 
 # UI
 st.title("📈 Stock Price Predictor")
@@ -20,8 +19,8 @@ if st.button("Predict"):
         st.error("Invalid ticker or no data found.")
     else:
         latest_price = df['Close'].iloc[-1]
-        prediction = model.predict(np.array([[latest_price]]))
-        st.success(f"Predicted next-day price: **${prediction[0]:.2f}**")
+        predicted_price = model.predict([[latest_price.item()]])
+        st.success(f"Predicted next-day price: **${predicted_price[0]:.2f}**")
 
         # Optional: show chart
         st.line_chart(df['Close'])
