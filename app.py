@@ -4,7 +4,7 @@ import pandas as pd
 import joblib
 
 # Load trained model
-model = joblib.load('StockPredictor/model.pkl')
+model = joblib.load('main/model.pkl')
 
 # UI
 st.title("📈 Stock Price Predictor")
